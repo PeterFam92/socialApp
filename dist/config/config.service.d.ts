@@ -1,0 +1,15 @@
+export declare const PORT: string;
+export declare const DB_URI: string;
+export declare const REDIS_URI: string;
+export declare const SALT_ROUNDS: string;
+export declare const ENC_KEY: string;
+export declare const ACCESS_TOKEN_SECRET_USER: string;
+export declare const REFRESH_TOKEN_SECRET_USER: string;
+export declare const ACCESS_TOKEN_SECRET_ADMIN: string;
+export declare const REFRESH_TOKEN_SECRET_ADMIN: string;
+export declare const REFRESH_TOKEN_EXPIRATION: string;
+export declare const ACCESS_TOKEN_EXPIRATION: string;
+export declare const GOOGLE_CLIENT_ID: string;
+export declare const user_Email: string;
+export declare const user_Password: string;
+export declare const WHILE_LIST: string[];
