@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { ZodError, ZodType } from 'zod';
 import { BadRequestException } from "../utils/response/error.response";
 import { z } from "zod";
+import { Types } from "mongoose";
 
 type keyReqType = keyof Request;
 type schemaType = Partial<Record<keyReqType, ZodType>>;
@@ -43,8 +44,6 @@ export const validation = (schema: schemaType) => {
        return next()as unknown as NextFunction;
     };
 };
-
-
 export const generalFields={
     
         username: z.string({ error: 'username is required' })
@@ -55,6 +54,21 @@ export const generalFields={
         password: z.string({ error: 'password is required' })
           .min(6, { error: 'password must be at least 6 characters long' }),
      gender: z.enum(['male', 'female'], { error: 'gender must be either male or female' }) ,
+     otp:z.string().regex(/^\d{6}$/),
+     file:function(mimeType:string[]){
+        return z.strictObject({
+            fieldname:z.string(),
+            originalname:z.string(),
+            encoding:z.string(),
+            mimeType:z.enum(mimeType),
+            buffer:z.any().optional(),
+            path:z.string().optional(),
+            size:z.number()
+        })
+     },
+     id:z.string().refine((value)=>{return Types.ObjectId.isValid(value)},
+     "invalid objectId"
+    )
 
 }
 

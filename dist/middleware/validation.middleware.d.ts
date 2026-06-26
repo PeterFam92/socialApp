@@ -13,5 +13,18 @@ export declare const generalFields: {
         male: "male";
         female: "female";
     }>;
+    otp: z.ZodString;
+    file: (mimeType: string[]) => z.ZodObject<{
+        fieldname: z.ZodString;
+        originalname: z.ZodString;
+        encoding: z.ZodString;
+        mimeType: z.ZodEnum<{
+            [x: string]: string;
+        }>;
+        buffer: z.ZodOptional<z.ZodAny>;
+        path: z.ZodOptional<z.ZodString>;
+        size: z.ZodNumber;
+    }, z.core.$strict>;
+    id: z.ZodString;
 };
 export {};
